@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/frontend-robopractice-test-task/static/js/main.86b51de5.js",
+    "main.css": "/frontend-robopractice-test-task/static/css/main.6a30fbf9.css",
+    "main.js": "/frontend-robopractice-test-task/static/js/main.71d0db6b.js",
     "index.html": "/frontend-robopractice-test-task/index.html",
-    "main.86b51de5.js.map": "/frontend-robopractice-test-task/static/js/main.86b51de5.js.map"
+    "main.6a30fbf9.css.map": "/frontend-robopractice-test-task/static/css/main.6a30fbf9.css.map",
+    "main.71d0db6b.js.map": "/frontend-robopractice-test-task/static/js/main.71d0db6b.js.map"
   },
   "entrypoints": [
-    "static/js/main.86b51de5.js"
+    "static/css/main.6a30fbf9.css",
+    "static/js/main.71d0db6b.js"
   ]
 }
