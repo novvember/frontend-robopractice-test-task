@@ -1,3 +1,5 @@
+import formatTime from './formatTime';
+
 export default function getColumnsForTable({ days }) {
   const userColumn = {
     title: 'User',
@@ -11,6 +13,7 @@ export default function getColumnsForTable({ days }) {
       title: dayNum.toString(),
       dataIndex: `day${dayNum}`,
       key: `day${dayNum}`,
+      render: formatTime,
     };
   });
 
@@ -18,6 +21,7 @@ export default function getColumnsForTable({ days }) {
     title: 'Monthly total',
     dataIndex: 'total',
     key: 'total',
+    render: formatTime,
   };
 
   return [userColumn, ...daysColumns, totalColumn];
