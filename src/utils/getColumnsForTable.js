@@ -7,6 +7,7 @@ export default function getColumnsForTable({ days }) {
     key: 'user',
     sorter: (a, b) => a.user.localeCompare(b.user),
     defaultSortOrder: 'descend',
+    fixed: 'left',
   };
 
   const daysColumns = new Array(days).fill({}).map((day, pos) => {
@@ -26,6 +27,7 @@ export default function getColumnsForTable({ days }) {
     key: 'total',
     render: formatTime,
     sorter: (a, b) => a.total - b.total,
+    fixed: 'right',
   };
 
   return [userColumn, ...daysColumns, totalColumn];

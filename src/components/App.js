@@ -1,9 +1,12 @@
-import { Table } from 'antd';
 import React from 'react';
+
 import api from '../utils/api';
 import formatRawData from '../utils/formatRawData';
 import getColumnsForTable from '../utils/getColumnsForTable';
 import getNumberOfDays from '../utils/getNumberOfDays';
+
+import { Table } from 'antd';
+import 'antd/dist/antd.css';
 
 export default function App() {
   const [columns, setColumns] = React.useState([]);
@@ -29,5 +32,14 @@ export default function App() {
     }
   }
 
-  return <Table dataSource={dataSource} columns={columns} />;
+  return (
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      size="small"
+      pagination={{
+        position: ['bottomRight'],
+      }}
+    />
+  );
 }
