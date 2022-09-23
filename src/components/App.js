@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 export default function App() {
   const [data, setData] = React.useState(null);
+  const [columns, setColumns] = React.useState([]);
 
   React.useEffect(() => {
     getData();
@@ -13,10 +14,35 @@ export default function App() {
     try {
       const data = await api.getData();
       setData(data);
-      console.log(data);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  React.useEffect(() => {
+    createColumns();
+  }, []);
+
+  function createColumns() {
+    const userColumn = {
+      title: 'User',
+      dataIndex: 'user',
+      key: 'user',
+    };
+    const totalColumn = {
+      title: 'Monthly total',
+      dataIndex: 'total',
+      key: 'total',
+    };
+    const daysColumns = new Array(31).fill({}).map((day, pos) => {
+      const dayNum = pos + 1;
+      return {
+        title: dayNum.toString(),
+        dataIndex: `day${dayNum}`,
+        key: `day${dayNum}`,
+      };
+    });
+    setColumns([userColumn, ...daysColumns, totalColumn]);
   }
 
   const dataSource = [
@@ -31,24 +57,6 @@ export default function App() {
       name: 'John',
       age: 42,
       address: '10 Downing Street',
-    },
-  ];
-
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
     },
   ];
 
