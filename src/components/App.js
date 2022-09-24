@@ -12,7 +12,9 @@ import { Content, Footer } from 'antd/lib/layout/layout';
 export default function App() {
   const [columns, setColumns] = React.useState([]);
   const [dataSource, setDataSource] = React.useState([]);
-  const [period, setPeriod] = React.useState({ year: '0000', month: '00' });
+  const [filteredData, setFilteredData] = React.useState([]);
+  const [period, setPeriod] = React.useState({ year: '----', month: '01' });
+  const [inputValue, setInputValue] = React.useState('');
 
   React.useEffect(() => {
     getData();
@@ -21,6 +23,13 @@ export default function App() {
   React.useEffect(() => {
     setColumns(getColumnsForTable({ days: getNumberOfDays(period.month) }));
   }, [period]);
+
+  React.useEffect(() => {
+    const filteredData = dataSource.filter((obj) =>
+      obj.user.toLowerCase().includes(inputValue.toLowerCase()),
+    );
+    setFilteredData(filteredData);
+  }, [dataSource, inputValue]);
 
   async function getData() {
     try {
@@ -33,25 +42,35 @@ export default function App() {
     }
   }
 
+  function handleInputChange(event) {
+    const value = event.target.value;
+    setInputValue(value);
+  }
+
   return (
     <Layout>
       <PageHeader
         title="User's Time in Social Web"
         subTitle={`Month: ${period.month}/${period.year}`}
-        extra={<Input placeholder="Search user" />}
+        extra={
+          <Input
+            placeholder="Search user"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        }
       />
 
       <Content>
         <Table
-          dataSource={dataSource}
+          dataSource={filteredData}
           columns={columns}
           size="small"
           pagination={{
             position: ['bottomRight'],
           }}
           scroll={{
-            x: 100,
-            // y: 1000,
+            x: 1000,
           }}
         />
       </Content>
