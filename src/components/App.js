@@ -51,7 +51,7 @@ export default function App() {
   }
 
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <PageHeader
         title="User's Time in Social Web"
         subTitle={`Month: ${period.month}/${period.year}`}
