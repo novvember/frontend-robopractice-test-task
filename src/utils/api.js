@@ -21,7 +21,7 @@ class Api {
     try {
       return await this._getDataFromServer();
     } catch (err) {
-      console.error('Server is offline. Using default data');
+      console.warn('Server is offline. Using default data');
       return this._getDefaultData();
     }
   }

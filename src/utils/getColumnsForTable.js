@@ -20,6 +20,7 @@ export default function getColumnsForTable({ days }) {
       render: formatTime,
       sorter: (a, b) => a[`day${dayNum}`] - b[`day${dayNum}`],
       width: 60,
+      align: 'right',
     };
   });
 
@@ -31,6 +32,7 @@ export default function getColumnsForTable({ days }) {
     sorter: (a, b) => a.total - b.total,
     fixed: 'right',
     width: 80,
+    align: 'right',
   };
 
   return [userColumn, ...daysColumns, totalColumn];

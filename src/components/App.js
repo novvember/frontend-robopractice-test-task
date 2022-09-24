@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 import { Content, Footer } from 'antd/lib/layout/layout';
 
 export default function App() {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [columns, setColumns] = React.useState([]);
   const [dataSource, setDataSource] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
@@ -32,6 +33,7 @@ export default function App() {
   }, [dataSource, inputValue]);
 
   async function getData() {
+    setIsLoading(true);
     try {
       const data = await api.getData();
       const [dataSource, period] = formatRawData(data);
@@ -40,6 +42,7 @@ export default function App() {
     } catch (err) {
       console.error(err);
     }
+    setIsLoading(false);
   }
 
   function handleInputChange(event) {
@@ -67,11 +70,13 @@ export default function App() {
           columns={columns}
           size="small"
           pagination={{
+            defaultPageSize: 20,
             position: ['bottomRight'],
           }}
           scroll={{
             x: 1000,
           }}
+          loading={isLoading}
         />
       </Content>
 
