@@ -8,6 +8,7 @@ export default function getColumnsForTable({ days }) {
     sorter: (a, b) => a.user.localeCompare(b.user),
     defaultSortOrder: 'descend',
     fixed: 'left',
+    width: 150,
   };
 
   const daysColumns = new Array(days).fill({}).map((day, pos) => {
@@ -18,6 +19,7 @@ export default function getColumnsForTable({ days }) {
       key: `day${dayNum}`,
       render: formatTime,
       sorter: (a, b) => a[`day${dayNum}`] - b[`day${dayNum}`],
+      width: 60,
     };
   });
 
@@ -28,6 +30,7 @@ export default function getColumnsForTable({ days }) {
     render: formatTime,
     sorter: (a, b) => a.total - b.total,
     fixed: 'right',
+    width: 80,
   };
 
   return [userColumn, ...daysColumns, totalColumn];

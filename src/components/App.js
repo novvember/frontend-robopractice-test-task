@@ -5,13 +5,14 @@ import formatRawData from '../utils/formatRawData';
 import getColumnsForTable from '../utils/getColumnsForTable';
 import getNumberOfDays from '../utils/getNumberOfDays';
 
-import { Table } from 'antd';
+import { Input, Layout, PageHeader, Table } from 'antd';
 import 'antd/dist/antd.css';
+import { Content, Footer } from 'antd/lib/layout/layout';
 
 export default function App() {
   const [columns, setColumns] = React.useState([]);
   const [dataSource, setDataSource] = React.useState([]);
-  const [period, setPeriod] = React.useState({ year: '2000', month: '01' });
+  const [period, setPeriod] = React.useState({ year: '0000', month: '00' });
 
   React.useEffect(() => {
     getData();
@@ -33,13 +34,36 @@ export default function App() {
   }
 
   return (
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      size="small"
-      pagination={{
-        position: ['bottomRight'],
-      }}
-    />
+    <Layout>
+      <PageHeader
+        title="User's Time in Social Web"
+        subTitle={`Month: ${period.month}/${period.year}`}
+        extra={<Input placeholder="Search user" />}
+      />
+
+      <Content>
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          size="small"
+          pagination={{
+            position: ['bottomRight'],
+          }}
+          scroll={{
+            x: 100,
+            // y: 1000,
+          }}
+        />
+      </Content>
+
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        <p>Test task for red_mad_robot</p>
+        <p>Created by novvember in 09/2022</p>
+      </Footer>
+    </Layout>
   );
 }
