@@ -13,7 +13,7 @@ https://novvember.github.io/frontend-robopractice-test-task/
 
 ### Статус разработки
 
-⚒️ _Базовая функциональнасть готова_
+✅ _Готово_
 
 ## Задание
 
